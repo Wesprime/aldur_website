@@ -1,0 +1,73 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        bronze: {
+          50: '#fbf8f0',
+          100: '#f4ead5',
+          200: '#e6d2a5',
+          300: '#d6b875',
+          400: '#c9aa62',
+          500: '#aa8642',
+          600: '#876636',
+          700: '#674e2f',
+          800: '#463520',
+          900: '#281f14',
+        },
+        ivory: {
+          50: '#fffdf8',
+          100: '#fbf8f0',
+          200: '#f4ead5',
+          300: '#eadfc8',
+          400: '#d7c7a8',
+        },
+        charcoal: {
+          50: '#f7f7f5',
+          100: '#e8e7e2',
+          200: '#ceccc2',
+          300: '#aaa79a',
+          400: '#777368',
+          500: '#575247',
+          600: '#403c34',
+          700: '#302d27',
+          800: '#23211d',
+          900: '#151411',
+        },
+        gold: {
+          50: '#fbf7ee',
+          100: '#f5ecd2',
+          200: '#ebd79f',
+          300: '#dfbf6c',
+          400: '#d4a843',
+          500: '#c89a2e',
+          600: '#a87c24',
+          700: '#835e1f',
+          800: '#5e431a',
+          900: '#3d2c12',
+        },
+        ink: {
+          50: '#f6f6f5',
+          100: '#e7e7e4',
+          200: '#cfcfca',
+          300: '#a8a8a0',
+          400: '#7a7a70',
+          500: '#525249',
+          600: '#3a3a33',
+          700: '#26261f',
+          800: '#16160f',
+          900: '#0a0a06',
+        },
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
+      letterSpacing: {
+        tightest: '-0.04em',
+      },
+    },
+  },
+  plugins: [],
+}
