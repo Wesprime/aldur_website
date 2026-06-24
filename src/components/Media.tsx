@@ -58,6 +58,45 @@ export function BrandLogo({ className = '' }: { className?: string }) {
   )
 }
 
+export function VideoMedia({
+  src = assets.video,
+  fallback,
+  caption,
+  className = '',
+}: {
+  src?: string
+  fallback?: string
+  caption?: string
+  className?: string
+}) {
+  const [failed, setFailed] = useState(false)
+
+  if (failed) {
+    return (
+      <div className={`relative h-full w-full overflow-hidden ${className}`}>
+        <MediaImage
+          src={fallback}
+          alt={caption || 'Construction media'}
+          label="Construction media"
+          className="h-full w-full object-cover"
+        />
+      </div>
+    )
+  }
+
+  return (
+    <video
+      className={`h-full w-full object-cover ${className}`}
+      src={src}
+      autoPlay
+      muted
+      loop
+      playsInline
+      onError={() => setFailed(true)}
+    />
+  )
+}
+
 export function TeamAvatar({ src, name, className = '' }: { src?: string; name: string; className?: string }) {
   const [failed, setFailed] = useState(!src)
   const initials = name
@@ -74,10 +113,13 @@ export function TeamAvatar({ src, name, className = '' }: { src?: string; name: 
   return (
     <div className={`relative flex items-center justify-center overflow-hidden bg-ivory-200 ${className}`} aria-label={name}>
       <div className="absolute inset-0 grid-bg opacity-40" />
-      <div className="absolute h-40 w-40 rounded-full border border-bronze-300/70 bg-white/55 shadow-[0_30px_80px_rgba(112,91,52,0.16)]" />
-      <div className="absolute h-24 w-24 translate-y-4 rounded-full bg-[linear-gradient(135deg,#f4ead5,#c9aa62)] opacity-90" />
-      <div className="absolute bottom-0 h-1/3 w-2/3 rounded-t-full bg-charcoal-800/85" />
-      <div className="relative z-10 -mt-16 font-display text-2xl font-bold text-charcoal-900">{initials}</div>
+      <div className="avatar-halo absolute h-56 w-56 rounded-full border border-bronze-300/70" />
+      <div className="avatar-halo absolute h-44 w-44 rounded-full border border-dashed border-bronze-400/55" />
+      <div className="avatar-float absolute h-40 w-40 rounded-full border border-bronze-300/70 bg-white/60 shadow-[0_30px_80px_rgba(112,91,52,0.16)]" />
+      <div className="avatar-float absolute h-24 w-24 -translate-y-7 rounded-full bg-[linear-gradient(135deg,#fffdf8,#d6b875)] opacity-95 shadow-[inset_-12px_-12px_24px_rgba(103,78,47,0.12)]" />
+      <div className="absolute bottom-[18%] h-24 w-36 rounded-t-[90px] bg-charcoal-800/90 shadow-[0_-12px_30px_rgba(70,53,32,0.12)]" />
+      <div className="absolute bottom-10 left-8 right-8 h-px bg-bronze-500/40" />
+      <div className="relative z-10 -mt-20 font-display text-2xl font-bold text-charcoal-900">{initials}</div>
     </div>
   )
 }

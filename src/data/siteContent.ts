@@ -2,15 +2,17 @@ export const assets = {
   logoPng: '/sample/branding/logo.png',
   logoFallback: '/logo.svg',
   video: '/sample/video/construction.mp4',
+  locationVideo: '/sample/video/location.mp4',
   hero: '/sample/projects/project-01.jpg',
   about: '/sample/projects/project-02.jpg',
+  locationImage: '/sample/projects/project-02.jpg',
 }
 
 export const navigation = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Leadership', href: '#leadership' },
+  { label: 'Team', href: '#leadership' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -22,8 +24,11 @@ export const company = {
   location: 'Al Majmaah Industrial Area, Riyadh Province, KSA',
   phone: '+966 16 432 4877',
   phoneHref: 'tel:+966164324877',
+  whatsapp: 'https://wa.me/966164324877',
   email: 'info@aldurnafees.com',
   emailHref: 'mailto:info@aldurnafees.com',
+  mapsHref:
+    'https://www.google.com/maps/search/?api=1&query=Al+Majmaah+Industrial+Area+Riyadh+Province+Saudi+Arabia',
 }
 
 export const hero = {
@@ -44,6 +49,7 @@ export const stats = [
 
 export const about = {
   kicker: 'Who We Are',
+  mediaCaption: 'On-site execution · Riyadh Province',
   title: 'A Saudi contracting partner built for disciplined project delivery.',
   paragraphs: [
     'Headquartered in Al Majmaah Industrial Area, Riyadh Province, Al Dur Al Nafees supports industrial, commercial, and infrastructure-focused programs with practical field capability and dependable execution.',
@@ -141,26 +147,44 @@ export const team = [
   {
     name: 'Ashiq',
     role: 'Managing Partner',
-    bio: 'Guides client relationships, project priorities, and company growth across core contracting services.',
-    img: '/sample/team/ashiq.jpg',
+    bio: 'Guides client relationships, project priorities, and delivery standards with a focus on dependable execution across the Kingdom.',
+    img: '/sample/team/team-ashiq.jpg',
   },
   {
     name: 'Althaf',
     role: 'Operations Lead',
-    bio: 'Coordinates field execution, resource planning, and service delivery for active project requirements.',
-    img: '/sample/team/althaf.jpg',
+    bio: 'Coordinates site resources, manpower mobilisation, and equipment support to keep project activity moving efficiently.',
+    img: '/sample/team/team-althaf.jpg',
   },
   {
     name: 'Junaid',
     role: 'Commercial Lead',
-    bio: 'Supports procurement, proposals, and commercial coordination for construction and supply scopes.',
-    img: '/sample/team/junaid.jpg',
+    bio: 'Supports procurement, material supply, and commercial coordination with a practical, client-focused approach.',
+    img: '/sample/team/team-junaid.jpg',
   },
 ]
+
+export const leadership = {
+  kicker: 'Leadership',
+  title: 'Leadership built around delivery.',
+  messageTitle: 'Message from Leadership',
+  message:
+    'Since 2016, Al Dur Al Nafees has focused on disciplined project delivery, dependable site support, and long-term client relationships across the Kingdom. Our approach is simple: understand the requirement clearly, mobilise the right people and resources, and deliver with accountability.',
+}
 
 export const location = {
   title: 'Based in Riyadh Province. Serving projects across the Kingdom.',
   body:
-    'From Al Majmaah Industrial Area, the company supports clients across Saudi Arabia with contracting, manpower, equipment, and material supply services.',
-  points: ['Al Majmaah Industrial Area', 'Riyadh Province', 'Kingdom of Saudi Arabia'],
+    'From Al Majmaah Industrial Area, Al Dur Al Nafees supports clients across Saudi Arabia with construction, manpower, equipment rental, and material supply services.',
+  points: ['Al Majmaah Industrial Area', 'Riyadh Province', 'Kingdom of Saudi Arabia', 'Available across KSA'],
+  coordinates: '25.90°N · 45.36°E',
+  marker: 'Riyadh Province / Al Majmaah',
+  videoCaption: 'Kingdom-wide project support',
 }
+
+export const contactMethods = [
+  { id: 'phone', label: 'Phone', value: company.phone, href: company.phoneHref },
+  { id: 'email', label: 'Email', value: company.email, href: company.emailHref },
+  { id: 'whatsapp', label: 'WhatsApp', value: 'Message us directly', href: company.whatsapp },
+  { id: 'location', label: 'Head Office', value: company.location, href: company.mapsHref },
+]

@@ -17,8 +17,12 @@ gsap.registerPlugin(ScrollTrigger)
 export default function App() {
   useEffect(() => {
     // Refresh ScrollTrigger after mount so all sections measure correctly
-    const t = setTimeout(() => ScrollTrigger.refresh(), 300)
-    return () => clearTimeout(t)
+    const refreshEarly = setTimeout(() => ScrollTrigger.refresh(), 300)
+    const refreshLate = setTimeout(() => ScrollTrigger.refresh(), 1000)
+    return () => {
+      clearTimeout(refreshEarly)
+      clearTimeout(refreshLate)
+    }
   }, [])
 
   return (

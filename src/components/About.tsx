@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { gsap, ScrollTrigger } from '../hooks/useGsap'
 import { about, assets } from '../data/siteContent'
-import { MediaImage } from './Media'
+import { VideoMedia } from './Media'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -12,7 +12,6 @@ export default function About() {
     const el = root.current
     if (!el) return
     const ctx = gsap.context(() => {
-      // Pinned image with text reveal
       gsap.from('.about-img', {
         clipPath: 'inset(100% 0 0 0)',
         duration: 1.4,
@@ -27,9 +26,8 @@ export default function About() {
         ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 60%' },
       })
-      // Parallax on image
       gsap.to('.about-img-inner', {
-        yPercent: 12,
+        yPercent: 6,
         ease: 'none',
         scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true },
       })
@@ -42,20 +40,21 @@ export default function About() {
       <div className="absolute inset-0 grid-bg opacity-30" />
       <div className="relative mx-auto max-w-[1400px] px-6 lg:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Image */}
-          <div className="about-img relative aspect-[4/5] overflow-hidden border border-bronze-200 bg-white shadow-[0_30px_90px_rgba(70,53,32,0.12)]">
-            <div className="about-img-inner absolute inset-0 -bottom-[12%]">
-              <MediaImage
-                src={assets.about}
-                alt="Riyadh construction"
-                label="Riyadh Province"
-                className="h-full w-full object-cover"
+          <div className="about-img relative aspect-[4/5] overflow-hidden border border-bronze-200 bg-white p-3 shadow-[0_30px_90px_rgba(70,53,32,0.12)]">
+            <div className="about-img-inner absolute inset-3 overflow-hidden">
+              <VideoMedia
+                src={assets.video}
+                fallback={assets.about}
+                caption={about.mediaCaption}
+                className="h-full w-full"
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/45 to-transparent" />
             <div className="absolute top-4 left-4 h-8 w-8 border-l-2 border-t-2 border-bronze-300" />
             <div className="absolute bottom-4 right-4 h-8 w-8 border-r-2 border-b-2 border-bronze-300" />
-            <div className="absolute bottom-6 left-6 font-display text-xs tracking-[0.2em] text-white">RIYADH PROVINCE</div>
+            <div className="absolute bottom-7 left-7 border border-white/25 bg-charcoal-900/45 px-4 py-2 font-display text-xs tracking-[0.2em] text-white backdrop-blur">
+              {about.mediaCaption}
+            </div>
           </div>
 
           <div>
