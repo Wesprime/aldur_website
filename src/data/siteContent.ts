@@ -148,7 +148,7 @@ export const projects = [
 export const leadership = {
   kicker: 'Leadership',
   title: 'Leadership aligned with delivery and Vision 2030.',
-  leaderName: 'Leadership Representative',
+  leaderName: 'Abdullah Bin Obaid Al Hamili',
   role: 'Leadership / Management',
   message:
     'Al Dur Al Nafees is guided by a practical leadership approach focused on dependable delivery, disciplined site support, and long-term client relationships across the Kingdom.',
