@@ -16,13 +16,19 @@ Drop future assets into these folders:
   Browser path example:
   /sample/projects/project-01.jpg
 
-- team/
-  Leadership photos. Expected names:
-  team-ashiq.jpg, team-althaf.jpg, team-junaid.jpg.
+- leadership/
+  Main leadership portrait. Expected name:
+  leader-main.jpg
   Browser path example:
-  /sample/team/team-ashiq.jpg
+  /sample/leadership/leader-main.jpg
   Do not use:
-  /public/sample/team/team-ashiq.jpg
+  /public/sample/leadership/leader-main.jpg
+
+- vision/
+  Vision 2030 image. Expected name:
+  vision-2030.jpg
+  Browser path example:
+  /sample/vision/vision-2030.jpg
 
 - video/
   Main construction video:

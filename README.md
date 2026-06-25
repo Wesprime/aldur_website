@@ -57,17 +57,16 @@ public/sample/projects/project-02.jpg
 
 ## Team cards
 
-Team data is configured in `src/data/siteContent.ts` under `team`.
+Leadership content is configured in `src/data/siteContent.ts` under `leadership`.
 
-Replace leadership photos here:
+Replace leadership and Vision 2030 imagery here:
 
 ```text
-public/sample/team/team-ashiq.jpg
-public/sample/team/team-althaf.jpg
-public/sample/team/team-junaid.jpg
+public/sample/leadership/leader-main.jpg
+public/sample/vision/vision-2030.jpg
 ```
 
-If a team photo is missing, the site shows a premium animated placeholder avatar.
+The old animated placeholder avatar grid has been removed.
 
 GSAP scroll animations are enhancement only. Leadership and Contact content is visible by default so hard refreshes still render the cards before any animation runs.
 
@@ -78,7 +77,7 @@ Contact cards are configured in `src/data/siteContent.ts` under `contactMethods`
 WhatsApp link:
 
 ```text
-https://wa.me/966164324877
+https://wa.me/966590821464
 ```
 
 ## Location map

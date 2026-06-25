@@ -6,6 +6,8 @@ export const assets = {
   hero: '/sample/projects/project-01.jpg',
   about: '/sample/projects/project-02.jpg',
   locationImage: '/sample/projects/project-02.jpg',
+  leaderMain: '/sample/leadership/leader-main.jpg',
+  vision2030: '/sample/vision/vision-2030.jpg',
 }
 
 export const navigation = [
@@ -21,10 +23,10 @@ export const company = {
   legalName: 'Al Dur Al Nafees General Contracting Est.',
   tagline: 'General Contracting Est.',
   established: '2016',
-  location: 'Al Majmaah Industrial Area, Riyadh Province, KSA',
-  phone: '+966 16 432 4877',
-  phoneHref: 'tel:+966164324877',
-  whatsapp: 'https://wa.me/966164324877',
+  location: 'Al Majmaah Industrial Area, Riyadh Province, Kingdom of Saudi Arabia',
+  phone: '059 082 1464',
+  phoneHref: 'tel:0590821464',
+  whatsapp: 'https://wa.me/966590821464',
   email: 'info@aldurnafees.com',
   emailHref: 'mailto:info@aldurnafees.com',
   mapsHref:
@@ -143,42 +145,33 @@ export const projects = [
   },
 ]
 
-export const team = [
-  {
-    name: 'Ashiq',
-    role: 'Managing Partner',
-    bio: 'Guides client relationships, project priorities, and delivery standards with a focus on dependable execution across the Kingdom.',
-    img: '/sample/team/team-ashiq.jpg',
-  },
-  {
-    name: 'Althaf',
-    role: 'Operations Lead',
-    bio: 'Coordinates site resources, manpower mobilisation, and equipment support to keep project activity moving efficiently.',
-    img: '/sample/team/team-althaf.jpg',
-  },
-  {
-    name: 'Junaid',
-    role: 'Commercial Lead',
-    bio: 'Supports procurement, material supply, and commercial coordination with a practical, client-focused approach.',
-    img: '/sample/team/team-junaid.jpg',
-  },
-]
-
 export const leadership = {
   kicker: 'Leadership',
-  title: 'Leadership built around delivery.',
-  messageTitle: 'Message from Leadership',
+  title: 'Leadership aligned with delivery and Vision 2030.',
+  leaderName: 'Leadership Representative',
+  role: 'Leadership / Management',
   message:
-    'Since 2016, Al Dur Al Nafees has focused on disciplined project delivery, dependable site support, and long-term client relationships across the Kingdom. Our approach is simple: understand the requirement clearly, mobilise the right people and resources, and deliver with accountability.',
+    'Al Dur Al Nafees is guided by a practical leadership approach focused on dependable delivery, disciplined site support, and long-term client relationships across the Kingdom.',
+  visionTitle: 'Vision 2030 Alignment',
+  vision:
+    'Supporting Saudi Arabia’s Vision 2030 through construction capability, industrial support, workforce mobilisation, and reliable project delivery.',
 }
 
 export const location = {
-  title: 'Based in Riyadh Province. Serving projects across the Kingdom.',
+  title: 'Based in Riyadh Province. Supporting projects across the Kingdom.',
   body:
     'From Al Majmaah Industrial Area, Al Dur Al Nafees supports clients across Saudi Arabia with construction, manpower, equipment rental, and material supply services.',
-  points: ['Al Majmaah Industrial Area', 'Riyadh Province', 'Kingdom of Saudi Arabia', 'Available across KSA'],
+  points: [
+    'Headquarters: Al Majmaah Industrial Area',
+    'Riyadh',
+    'Jeddah',
+    'Yanbu',
+    'Khobar',
+    'Jubail',
+    'Kingdom-wide support',
+  ],
   coordinates: '25.90°N · 45.36°E',
-  marker: 'Riyadh Province / Al Majmaah',
+  marker: 'Headquarters: Al Majmaah Industrial Area',
   videoCaption: 'Kingdom-wide project support',
 }
 

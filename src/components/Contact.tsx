@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { gsap, ScrollTrigger } from '../hooks/useGsap'
-import { contactMethods } from '../data/siteContent'
+import { company, contactMethods } from '../data/siteContent'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -39,7 +39,7 @@ function ContactIcon({ id }: { id: string }) {
 
 export default function Contact() {
   const root = useRef<HTMLDivElement>(null)
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   useEffect(() => {
     const el = root.current
@@ -78,9 +78,32 @@ export default function Contact() {
     return () => ctx.revert()
   }, [])
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setSent(true)
+    setStatus('loading')
+
+    const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY
+    if (!accessKey) {
+      setStatus('error')
+      return
+    }
+
+    const formData = new FormData(e.currentTarget)
+    formData.append('access_key', accessKey)
+    formData.append('subject', 'New Al Dur Al Nafees website enquiry')
+    formData.append('from_name', company.legalName)
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      })
+      const result = await response.json()
+      setStatus(result.success ? 'success' : 'error')
+      if (result.success) e.currentTarget.reset()
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -125,7 +148,7 @@ export default function Contact() {
 
                 if (method.href) {
                   return (
-                    <a key={method.id} href={method.href} target={method.id === 'whatsapp' || method.id === 'location' ? '_blank' : undefined} rel={method.id === 'whatsapp' || method.id === 'location' ? 'noreferrer' : undefined} className={className}>
+                    <a key={method.id} href={method.href} target={method.id === 'whatsapp' || method.id === 'location' ? '_blank' : undefined} rel={method.id === 'whatsapp' || method.id === 'location' ? 'noopener noreferrer' : undefined} className={className}>
                       {content}
                     </a>
                   )
@@ -143,33 +166,39 @@ export default function Contact() {
           <div className="contact-reveal relative border border-bronze-200 bg-white/85 p-8 opacity-100 shadow-[0_30px_90px_rgba(70,53,32,0.1)] transition-colors duration-500 focus-within:border-bronze-500 lg:p-10">
             <div className="absolute top-4 left-4 h-8 w-8 border-l-2 border-t-2 border-bronze-400" />
             <div className="absolute bottom-4 right-4 h-8 w-8 border-r-2 border-b-2 border-bronze-400" />
-            {sent ? (
+            {status === 'success' ? (
               <div className="flex flex-col items-center justify-center text-center py-20">
                 <div className="h-16 w-16 border-2 border-bronze-500 flex items-center justify-center mb-6">
                   <span className="text-bronze-700 text-2xl">✓</span>
                 </div>
-                <h3 className="font-display font-bold text-2xl text-charcoal-900 mb-2">Message received</h3>
-                <p className="font-body text-sm text-charcoal-500">We'll respond within one business day.</p>
+                <h3 className="font-display font-bold text-2xl text-charcoal-900 mb-2">Thank you.</h3>
+                <p className="font-body text-sm text-charcoal-500">Your enquiry has been received. Our team will contact you shortly.</p>
               </div>
             ) : (
               <form onSubmit={onSubmit} className="flex flex-col gap-6">
+                <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} autoComplete="off" />
+                <input type="hidden" name="to_email" value={company.email} />
                 <div>
                   <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Name</label>
-                  <input required type="text" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="Your full name" />
+                  <input required name="name" type="text" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="Your full name" />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
-                    <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Email</label>
-                    <input required type="email" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="you@company.com" />
+                    <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Company</label>
+                    <input required name="company" type="text" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="Company name" />
                   </div>
                   <div>
-                    <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Phone</label>
-                    <input type="tel" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="+966 ..." />
+                    <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Email</label>
+                    <input required name="email" type="email" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="you@company.com" />
                   </div>
                 </div>
                 <div>
-                  <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Service</label>
-                  <select className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2">
+                  <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Phone</label>
+                  <input required name="phone" type="tel" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="059 082 1464" />
+                </div>
+                <div>
+                  <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Service Required</label>
+                  <select required name="service_required" className="w-full bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2">
                     <option>Construction</option>
                     <option>Equipment Rental</option>
                     <option>Material Supply</option>
@@ -178,11 +207,16 @@ export default function Contact() {
                 </div>
                 <div>
                   <label className="font-display text-[10px] tracking-[0.25em] text-bronze-700 uppercase block mb-2">Message</label>
-                  <textarea required rows={4} className="w-full resize-none bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="Tell us about your project..." />
+                  <textarea required name="message" rows={4} className="w-full resize-none bg-transparent border-b border-bronze-300 py-3 font-body text-sm text-charcoal-900 placeholder:text-charcoal-400 transition-all duration-300 focus:border-bronze-600 focus:outline-none focus:pl-2" placeholder="Tell us about your project..." />
                 </div>
-                <button type="submit" className="group relative inline-flex items-center justify-center gap-3 overflow-hidden bg-charcoal-900 px-7 py-4 font-display text-sm tracking-[0.15em] text-white shadow-[0_16px_40px_rgba(21,20,17,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-bronze-600 hover:shadow-[0_22px_55px_rgba(170,134,66,0.24)]">
+                {status === 'error' ? (
+                  <p className="border border-red-200 bg-red-50 px-4 py-3 font-body text-sm text-red-700">
+                    Something went wrong. Please try again or contact us directly.
+                  </p>
+                ) : null}
+                <button disabled={status === 'loading'} type="submit" className="group relative inline-flex items-center justify-center gap-3 overflow-hidden bg-charcoal-900 px-7 py-4 font-display text-sm tracking-[0.15em] text-white shadow-[0_16px_40px_rgba(21,20,17,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-bronze-600 hover:shadow-[0_22px_55px_rgba(170,134,66,0.24)] disabled:cursor-wait disabled:opacity-70">
                   <span className="absolute inset-y-0 left-0 w-0 bg-white/15 transition-all duration-500 group-hover:w-full" />
-                  <span className="relative">SEND MESSAGE</span>
+                  <span className="relative">{status === 'loading' ? 'SENDING...' : 'SEND MESSAGE'}</span>
                   <span className="relative inline-block transition-transform group-hover:translate-x-1">→</span>
                 </button>
               </form>

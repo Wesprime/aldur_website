@@ -41,7 +41,17 @@ export default function Footer() {
         <div className="gold-rule mb-6" />
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="font-body text-xs text-ivory-100/45">© {new Date().getFullYear()} {company.legalName}. All rights reserved.</div>
-          <div className="font-display text-[10px] tracking-[0.3em] text-bronze-300/80">EST. 2016 · RIYADH · KSA</div>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-center sm:justify-end">
+            <a
+              href="https://www.wesprimeit.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-body text-xs text-ivory-100/45 transition-colors hover:text-bronze-200"
+            >
+              Developed by <span className="text-bronze-300/90">Wesprime</span>
+            </a>
+            <div className="font-display text-[10px] tracking-[0.3em] text-bronze-300/80">EST. 2016 · RIYADH · KSA</div>
+          </div>
         </div>
       </div>
     </footer>

@@ -11,6 +11,7 @@ import Location from './components/Location'
 import Leadership from './components/Leadership'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import FloatingWhatsApp from './components/FloatingWhatsApp'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -40,6 +41,7 @@ export default function App() {
         <Leadership />
         <Contact />
       </main>
+      <FloatingWhatsApp />
       <Footer />
     </>
   )

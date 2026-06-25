@@ -137,6 +137,11 @@ body {
   animation: avatarHalo 18s linear infinite;
 }
 
+@keyframes whatsappPulse {
+  0% { opacity: 0.55; transform: scale(1); }
+  80%, 100% { opacity: 0; transform: scale(1.55); }
+}
+
 .profile-float {
   animation: avatarFloat 5.4s ease-in-out infinite;
 }

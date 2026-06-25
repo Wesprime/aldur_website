@@ -45,10 +45,10 @@ export default function Navbar() {
         </ul>
 
         <a
-          href="#contact"
+          href={company.phoneHref}
           className="hidden lg:inline-flex items-center gap-2 border border-bronze-400/70 bg-white/50 px-5 py-2.5 font-display text-xs tracking-[0.2em] text-bronze-800 hover:bg-bronze-500 hover:text-white transition-all duration-300"
         >
-          GET A QUOTE
+          CALL {company.phone}
         </a>
 
         <button
@@ -82,11 +82,11 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="#contact"
+              href={company.phoneHref}
               onClick={() => setOpen(false)}
               className="inline-block border border-bronze-400/70 px-5 py-2.5 font-display text-xs tracking-[0.2em] text-bronze-800"
             >
-              GET A QUOTE
+              CALL {company.phone}
             </a>
           </li>
         </ul>
